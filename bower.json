@@ -1,0 +1,7 @@
+{
+  "name": "at-carbon-message",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#master"
+  }
+}

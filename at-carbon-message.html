@@ -1,0 +1,186 @@
+﻿<link rel="import" href="../polymer/polymer.html">
+
+<polymer-element name="at-carbon-message">
+
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .message {
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+        -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 1px 2px rgba(0, 0, 0, 0.05);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 1px 2px rgba(0, 0, 0, 0.05);
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+      }
+
+      .message h4 {
+        margin-top: 0;
+        color: inherit;
+      }
+
+      .message .link {
+        font-weight: bold;
+      }
+
+      .message > p,
+      .message > ul {
+        margin-bottom: 0;
+      }
+
+      .message > p + p {
+        margin-top: 5px;
+      }
+
+      .dismissable,
+      .dismissible {
+        padding-right: 35px;
+      }
+
+      .dismissable .close,
+      .dismissible .close {
+        position: relative;
+        top: -2px;
+        right: -21px;
+        color: inherit;
+      }
+
+      .success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+      }
+
+      .success hr {
+        border-top-color: #c9e2b3;
+      }
+
+      .success .link {
+        color: #2b542c;
+      }
+
+      .info {
+        background-color: #d9edf7;
+        border-color: #bce8f1;
+        color: #31708f;
+      }
+
+      .info hr {
+        border-top-color: #a6e1ec;
+      }
+
+      .info .link {
+        color: #245269;
+      }
+
+      .warning {
+        background-color: #fcf8e3;
+        border-color: #faebcc;
+        color: #8a6d3b;
+      }
+
+      .warning hr {
+        border-top-color: #f7e1b5;
+      }
+
+      .warning .link {
+        color: #66512c;
+      }
+
+      .error {
+        background-color: #f2dede;
+        border-color: #ebccd1;
+        color: #a94442;
+      }
+
+      .error hr {
+        border-top-color: #e4b9c0;
+      }
+
+      .error .link {
+        color: #843534;
+      }
+
+
+      .success {
+        background-image: -webkit-linear-gradient(top, #dff0d8 0%, #c8e5bc 100%);
+        background-image: -o-linear-gradient(top, #dff0d8 0%, #c8e5bc 100%);
+        background-image: linear-gradient(to bottom, #dff0d8 0%, #c8e5bc 100%);
+        background-repeat: repeat-x;        
+        border-color: #b2dba1;
+      }
+
+      .info {
+        background-image: -webkit-linear-gradient(top, #d9edf7 0%, #b9def0 100%);
+        background-image: -o-linear-gradient(top, #d9edf7 0%, #b9def0 100%);
+        background-image: linear-gradient(to bottom, #d9edf7 0%, #b9def0 100%);
+        background-repeat: repeat-x;        
+        border-color: #9acfea;
+      }
+
+      .warning {
+        background-image: -webkit-linear-gradient(top, #fcf8e3 0%, #f8efc0 100%);
+        background-image: -o-linear-gradient(top, #fcf8e3 0%, #f8efc0 100%);
+        background-image: linear-gradient(to bottom, #fcf8e3 0%, #f8efc0 100%);
+        background-repeat: repeat-x;        
+        border-color: #f5e79e;
+      }
+
+      .error {
+        background-image: -webkit-linear-gradient(top, #f2dede 0%, #e7c3c3 100%);
+        background-image: -o-linear-gradient(top, #f2dede 0%, #e7c3c3 100%);
+        background-image: linear-gradient(to bottom, #f2dede 0%, #e7c3c3 100%);
+        background-repeat: repeat-x;        
+        border-color: #dca7a7;
+      }
+
+      .hide {
+        display:none;
+      }
+    </style>
+
+    <div id="msg" class="message {{ type }}"></div>
+  </template>
+
+  <script>
+
+    Polymer('at-carbon-message', {
+      publish: {
+        type: "warning",
+        html: ""
+      },
+      htmlChanged: function() {
+        this.render();
+      },
+      attached: function () {
+        this.render();
+      },
+      render: function() {
+        var msg = this.innerHTML.trim();
+        if (!!this.html) msg = this.html;
+
+        var container = this.$.msg;
+        container.innerHTML = msg;
+        
+        // hide container if empty
+        if (!!msg) {
+          container.classList.remove("hide");
+        } else {
+          container.classList.add("hide");
+        }
+
+      },
+      ready: function () {
+        
+      }
+
+
+    });
+
+  </script>
+
+</polymer-element>
