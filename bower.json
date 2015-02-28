@@ -2,6 +2,7 @@
   "name": "at-carbon-message",
   "private": true,
   "dependencies": {
-    "polymer": "Polymer/polymer#master"
+    "polymer": "Polymer/polymer#master",
+    "at-core-theme": "TangereJs/at-core-theme#master"
   }
 }
