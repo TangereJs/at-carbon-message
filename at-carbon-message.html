@@ -1,82 +1,60 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../at-core-theme/at-core-theme.html">
 
-<dom-module id="at-carbon-message">
-  <style>
-    :host {
-      display: block;
-    }
-    .hide {
-      display: none;
-    }
-  </style>
+<polymer-element name="at-carbon-message">
+
   <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .hide {
+        display:none;
+      }
+    </style>
+
     <at-core-theme></at-core-theme>
+    
     <div id="msg"></div>
   </template>
-</dom-module>
 
-<script>
-  Polymer({
-    is: 'at-carbon-message',
-    properties: {
-      type: {
-        type: String,
-        value: "warning"
+  <script>
+
+    Polymer('at-carbon-message', {
+      publish: {
+        type: "warning",
+        html: ""
       },
+      htmlChanged: function() {
+        this.render();
+      },
+      attached: function () {
+        this.render();
+      },
+      render: function() {
+        var msg = this.innerHTML.trim();
+        if (!!this.html) msg = this.html;
 
-      html: {
-        type: String,
-        value: "",
-        observer: 'htmlChanged'
-      }
-    },
-    htmlChanged: function () {
-      this.render();
-    },
-    ready: function () {
-      this.render();
-    },
-    render: function () {
-
-      // get innerHTML from lightDom
-      var msg = this._nodesInnerHTML(Polymer.dom.childNodes(this)).trim();
-    
-      if (!!this.html) msg = this.html;
-
-      var container = this.$.msg;
-      container.innerHTML = msg;
-
-      var ui = this.type;
-
-      // hide container if empty
-      if (!msg) ui += " hide";
-
-      container.className = "ui message " + ui;
-
-    },
-    ready: function () {
-
-    },
-    _nodesInnerHTML: function (nodes) {
-      // generates combined innerHTML of an array of nodes
-      var html = "";
-      for (var i = 0, ii = nodes.length; i < ii; i++) {
-        var node = nodes[i];
-
-        // text node
-        if(node.nodeType == 3)  html += node.textContent;
+        var container = this.$.msg;
+        container.innerHTML = msg;
+       
+        var ui = this.type;
         
-        // html node
-        if(node.nodeType == 1)  html += node.outerHTML;      
+        
+        // hide container if empty
+        if (!msg) ui += " hide";
+        
+        container.className = "ui message " + ui;
 
+      },
+      ready: function () {
+        
       }
-      
-      return html;
-    }
 
 
-  });
-</script>
+    });
+
+  </script>
 
 </polymer-element>
