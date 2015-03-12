@@ -40,7 +40,7 @@
     render: function () {
 
       // get innerHTML from lightDom
-      var msg = this._nodesInnerHTML(Polymer.dom.childNodes(this)).trim();
+      var msg = this._nodesInnerHTML(Polymer.dom(this).childNodes).trim();
     
       if (!!this.html) msg = this.html;
 
