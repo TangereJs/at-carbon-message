@@ -1,21 +1,45 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../at-core-theme/at-core-theme.html">
+<link rel="import" href="../at-theme/at-theme.html">
 
 <dom-module id="at-carbon-message">
-  <style>
-    :host {
-      display: block;
-    }
-    .hide {
-      display: none;
-    }
-
-    .ui.message {
-      overflow: auto;
-    }
-  </style>
   <template>
-    <at-core-theme></at-core-theme>
+
+    <style>
+      :host {
+        display: block;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      #msg {
+        padding: 8px;
+        margin: 8px;
+      }
+
+      .success {
+        background-color: var(--at-light-green);
+        color: var(--at-background-text-color);
+      }
+
+      .info {
+        background-color: var(--at-light-blue);
+        color: var(--at-background-text-color);
+      }
+
+      .error {
+        background-color: var(--at-light-red);
+        color: var(--at-background-text-color);
+      }
+
+      .warning{
+        background-color: var(--at-light-orange);
+        color: var(--at-background-text-color);
+      }
+
+    </style>
+
     <div id="msg"></div>
   </template>
 </dom-module>
@@ -23,13 +47,12 @@
 <script>
   Polymer({
     is: 'at-carbon-message',
-    _scopeCssViaAttr: true,
     properties: {
       type: {
         type: String,
         value: "warning",
-		xtype: "enum",
-		xvaluelist: "warning,info,error,success"
+        xtype: "enum",
+        xvaluelist: "warning,info,error,success"
       },
 
       html: {
@@ -48,19 +71,23 @@
 
       // get innerHTML from lightDom
       var msg = this._nodesInnerHTML(Polymer.dom(this).childNodes).trim();
-    
+
       if (!!this.html) msg = this.html;
 
       var container = this.$.msg;
       container.innerHTML = msg;
 
-      var ui = this.type;
+      var cl = this.type;
 
       // hide container if empty
-      if (!msg) ui += " hide";
+      if (!msg) cl = "hide";
 
-      container.className = "ui message " + ui;
+      if (this._cl !== undefined) {
+        Polymer.dom(this.$.msg).classList.toggle(this._cl, false);
+      }
 
+      Polymer.dom(this.$.msg).classList.toggle(cl, true);
+      this._cl = cl;
     },
     ready: function () {
 
@@ -72,13 +99,13 @@
         var node = nodes[i];
 
         // text node
-        if(node.nodeType == 3)  html += node.textContent;
-        
+        if (node.nodeType == 3) html += node.textContent;
+
         // html node
-        if(node.nodeType == 1)  html += node.outerHTML;      
+        if (node.nodeType == 1) html += node.outerHTML;
 
       }
-      
+
       return html;
     }
 
@@ -86,4 +113,3 @@
   });
 </script>
 
-</polymer-element>
