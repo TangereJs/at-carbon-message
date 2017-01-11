@@ -1,60 +1,114 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../at-core-theme/at-core-theme.html">
+<link rel="import" href="../tangere/tangere.html">
+<link rel="import" href="../at-theme/at-theme.html">
 
-<polymer-element name="at-carbon-message">
-
+<dom-module id="at-carbon-message">
   <template>
+
     <style>
       :host {
         display: block;
       }
 
       .hide {
-        display:none;
+        display: none;
       }
+
+      #msg {
+        padding: 8px;
+        margin: 8px;
+      }
+
+      .success {
+        background-color: var(--at-light-green);
+        color: var(--at-background-text-color);
+      }
+
+      .info {
+        background-color: var(--at-light-blue);
+        color: var(--at-background-text-color);
+      }
+
+      .error {
+        background-color: var(--at-light-red);
+        color: var(--at-background-text-color);
+      }
+
+      .warning{
+        background-color: var(--at-light-orange);
+        color: var(--at-background-text-color);
+      }
+
     </style>
 
-    <at-core-theme></at-core-theme>
-    
     <div id="msg"></div>
   </template>
+</dom-module>
 
-  <script>
+<script>
+  Polymer({
+    is: 'at-carbon-message',
+    properties: {
+      type: {
+        type: String,
+        value: "warning",
+        xtype: "enum",
+        xvaluelist: "warning,info,error,success"
+      },
 
-    Polymer('at-carbon-message', {
-      publish: {
-        type: "warning",
-        html: ""
-      },
-      htmlChanged: function() {
-        this.render();
-      },
-      attached: function () {
-        this.render();
-      },
-      render: function() {
-        var msg = this.innerHTML.trim();
-        if (!!this.html) msg = this.html;
+      html: {
+        type: String,
+        value: "",
+        observer: 'htmlChanged'
+      }
+    },
+    htmlChanged: function () {
+      this.render();
+    },
+    ready: function () {
+      this.render();
+    },
+    render: function () {
 
-        var container = this.$.msg;
-        container.innerHTML = msg;
-       
-        var ui = this.type;
-        
-        
-        // hide container if empty
-        if (!msg) ui += " hide";
-        
-        container.className = "ui message " + ui;
+      // get innerHTML from lightDom
+      var msg = this._nodesInnerHTML(Polymer.dom(this).childNodes).trim();
 
-      },
-      ready: function () {
-        
+      if (!!this.html) msg = this.html;
+
+      var container = this.$.msg;
+      container.innerHTML = msg;
+
+      var cl = this.type;
+
+      // hide container if empty
+      if (!msg) cl = "hide";
+
+      if (this._cl !== undefined) {
+        Polymer.dom(this.$.msg).classList.toggle(this._cl, false);
       }
 
+      Polymer.dom(this.$.msg).classList.toggle(cl, true);
+      this._cl = cl;
+    },
+    ready: function () {
 
-    });
+    },
+    _nodesInnerHTML: function (nodes) {
+      // generates combined innerHTML of an array of nodes
+      var html = "";
+      for (var i = 0, ii = nodes.length; i < ii; i++) {
+        var node = nodes[i];
 
-  </script>
+        // text node
+        if (node.nodeType == 3) html += node.textContent;
 
-</polymer-element>
+        // html node
+        if (node.nodeType == 1) html += node.outerHTML;
+
+      }
+
+      return html;
+    }
+
+
+  });
+</script>
