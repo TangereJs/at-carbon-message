@@ -1,9 +1,10 @@
 {
   "name": "at-carbon-message",
   "private": true,
+  "version": "0.0.1.15",
   "dependencies": {
-    "polymer": "Polymer/polymer#master",
-    "at-core-theme": "TangereJs/at-core-theme#master"
-  },
-  "version": "0.0.1.15"
+    "tangere": "TangereJs/tangere#0.8-preview",
+    "at-doc-viewer": "TangereJs/at-doc-viewer#0.8-preview",
+    "at-theme": "TangereJs/at-theme#0.8-preview
+  }
 }
