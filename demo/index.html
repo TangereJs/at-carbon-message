@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+
+  <title>at-carbon-message demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../tangere/tangere.html">
+  <link rel="import" href="../../paper-styles/demo-pages.html">
+  <link rel="import" href="../../at-doc-snippet/at-doc-snippet.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+  <link rel="import" href="../../at-core-style-classes/at-core-style-classes.html">
+
+  <style is="custom-style" include="demo-pages-shared-styles">
+    at-doc-snippet {
+      --at-doc-snippet-background-color: #fff;     
+    }   
+
+    .vertical-section-container {
+      max-width: 900px
+    }
+
+  </style>
+
+</head>
+  
+<body unresolved>
+  
+  <div class="vertical-section-container centered">
+    <h4>Warning</h4>
+    <at-doc-snippet>
+      <template>
+        <at-carbon-message type="warning" html="Better check yourself, you're not looking too good.">
+        </at-carbon-message>
+      </template>
+    </at-doc-snippet>   
+  </div>
+  
+  <div class="vertical-section-container centered">
+    <h4>Error</h4>
+    <at-doc-snippet>
+      <template>
+        <at-carbon-message type="error" html="Change a few things up and try submitting again.">
+        </at-carbon-message>
+      </template>
+    </at-doc-snippet>   
+  </div>
+  
+  <div class="vertical-section-container centered">
+    <h4>Info</h4>
+    <at-doc-snippet>
+      <template>
+        <at-carbon-message type="info">
+          <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+        </at-carbon-message>
+      </template>
+    </at-doc-snippet>   
+  </div>
+  
+  
+  <div class="vertical-section-container centered">
+    <h4>Success</h4>
+    <at-doc-snippet>
+      <template>
+        <at-carbon-message type="success">
+          <strong>Profile saved.</strong> Your user profile was updated.
+        </at-carbon-message>
+      </template>
+    </at-doc-snippet>   
+  </div>
+  
+</body>
+</html>
