@@ -57,13 +57,14 @@
 
       html: {
         type: String,
-        value: "",
-        observer: 'htmlChanged'
+        value: ""
       }
     },
-    htmlChanged: function () {
-      this.render();
-    },
+
+    observers: [
+      'render(type, html)'
+    ],
+
     ready: function () {
       this.render();
     },
@@ -76,11 +77,14 @@
 
       var container = this.$.msg;
       container.innerHTML = msg;
+      
+      // hide container if empty
+      Polymer.dom(this.$.msg).classList.toggle('hide', !msg);
+
+      // ignore non string and empty value for type because they do not make sense
+      if (!this._isString(this.type) || !this.type.length) return;
 
       var cl = this.type;
-
-      // hide container if empty
-      if (!msg) cl = "hide";
 
       if (this._cl !== undefined) {
         Polymer.dom(this.$.msg).classList.toggle(this._cl, false);
@@ -107,7 +111,9 @@
       }
 
       return html;
-    }
+    },
+
+    _isString: function(obj) { return Object.prototype.toString.call(obj) === "[object String]"; }
 
 
   });

@@ -1,0 +1,389 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>at-carbon-message tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <link rel="import" href="../at-carbon-message.html">
+  <link rel="import" href="../../iron-test-helpers/iron-test-helpers.html" />
+</head>
+
+<body>
+  <test-fixture id="initial">
+    <template>
+      <at-carbon-message></at-carbon-message>
+    </template>
+  </test-fixture>
+
+  <!-- 
+      type fixtures 
+    -->
+  <test-fixture id="typeIsUndefined">
+    <template>
+      <at-carbon-message type="undefined"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="typeIsNull">
+    <template>
+      <at-carbon-message type="null"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="typeIsTrue">
+    <template>
+      <at-carbon-message type="true"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="typeIsFalse">
+    <template>
+      <at-carbon-message type="false"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="typeIs-42">
+    <template>
+      <at-carbon-message type="-42"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="typeIs0">
+    <template>
+      <at-carbon-message type="0"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="typeIs42">
+    <template>
+      <at-carbon-message type="42"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="typeIsEmpty">
+    <template>
+      <at-carbon-message type=""></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="typeIsLorem_ipsum">
+    <template>
+      <at-carbon-message type="lorem ipsum"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="typeIs{}">
+    <template>
+      <at-carbon-message type="{}"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="typeIs[]">
+    <template>
+      <at-carbon-message type="[]"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="typeIsFunction">
+    <template>
+      <at-carbon-message type="function f() { return undefined; }"></at-carbon-message>
+    </template>
+  </test-fixture>
+
+  <!-- 
+      html fixtures 
+    -->
+  <test-fixture id="htmlIsUndefined">
+    <template>
+      <at-carbon-message html="undefined"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="htmlIsNull">
+    <template>
+      <at-carbon-message html="null"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="htmlIsTrue">
+    <template>
+      <at-carbon-message html="true"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="htmlIsFalse">
+    <template>
+      <at-carbon-message html="false"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="htmlIs-42">
+    <template>
+      <at-carbon-message html="-42"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="htmlIs0">
+    <template>
+      <at-carbon-message html="0"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="htmlIs42">
+    <template>
+      <at-carbon-message html="42"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="htmlIsEmpty">
+    <template>
+      <at-carbon-message html=""></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="htmlIsLorem_ipsum">
+    <template>
+      <at-carbon-message html="lorem ipsum"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="htmlIs{}">
+    <template>
+      <at-carbon-message html="{}"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="htmlIs[]">
+    <template>
+      <at-carbon-message html="[]"></at-carbon-message>
+    </template>
+  </test-fixture>
+  <test-fixture id="htmlIsFunction">
+    <template>
+      <at-carbon-message html="function f() { return undefined; }"></at-carbon-message>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('initial value tests', function() {
+      test('initial value', function() {
+        var elt = fixture('initial');
+
+        assert.equal(elt.type, "warning");
+        assert.equal(elt.html, "");
+      });
+    });
+
+    // 
+    // type attribute tests
+    // 
+    suite("type attribute tests", function() {
+      test('type is undefined', function() {
+        var elt = fixture('typeIsUndefined');
+
+        assert.equal(elt.type, "undefined");
+        assert.equal(elt.html, "");
+      });
+
+      test('type is null', function() {
+        var elt = fixture('typeIsNull');
+
+        assert.equal(elt.type, "null");
+        assert.equal(elt.html, "");
+      });
+
+      test('type is true', function() {
+        var elt = fixture('typeIsTrue');
+
+        assert.equal(elt.type, "true");
+        assert.equal(elt.html, "");
+      });
+
+      test('type is false', function() {
+        var elt = fixture('typeIsFalse');
+
+        assert.equal(elt.type, "false");
+        assert.equal(elt.html, "");
+      });
+
+      test('type is -42', function() {
+        var elt = fixture('typeIs-42');
+
+        assert.equal(elt.type, "-42");
+        assert.equal(elt.html, "");
+      });
+
+      test('type is 0', function() {
+        var elt = fixture('typeIs0');
+
+        assert.equal(elt.type, "0");
+        assert.equal(elt.html, "");
+      });
+
+      test('type is 42', function() {
+        var elt = fixture('typeIs42');
+
+        assert.equal(elt.type, "42");
+        assert.equal(elt.html, "");
+      });
+
+      test('type is empty', function() {
+        var elt = fixture('typeIsEmpty');
+
+        assert.equal(elt.type, "");
+        assert.equal(elt.html, "");
+      });
+
+      test('type is lorem ipsum', function() {
+        var elt = fixture('typeIsLorem_ipsum');
+
+        assert.equal(elt.type, "lorem ipsum");
+        assert.equal(elt.html, "");
+      });
+
+      test('type is {}', function() {
+        var elt = fixture('typeIs{}');
+
+        assert.equal(elt.type, "{}");
+        assert.equal(elt.html, "");
+      });
+
+      test('type is []', function() {
+        var elt = fixture('typeIs[]');
+
+        assert.equal(elt.type, "[]");
+        assert.equal(elt.html, "");
+      });
+
+      test('type is function', function() {
+        var elt = fixture('typeIsFunction');
+
+        assert.equal(elt.type, "function f() { return undefined; }");
+        assert.equal(elt.html, "");
+      });
+    });
+
+    // 
+    // html attribute tests
+    // 
+    suite("html attribute tests", function() {
+      test('html is undefined', function() {
+        var elt = fixture('htmlIsUndefined');
+
+        assert.equal(elt.type, "warning");
+        assert.equal(elt.html, "undefined");
+      });
+
+      test('html is null', function() {
+        var elt = fixture('htmlIsNull');
+
+        assert.equal(elt.type, "warning");
+        assert.equal(elt.html, "null");
+      });
+
+      test('html is true', function() {
+        var elt = fixture('htmlIsTrue');
+
+        assert.equal(elt.type, "warning");
+        assert.equal(elt.html, "true");
+      });
+
+      test('html is false', function() {
+        var elt = fixture('htmlIsFalse');
+
+        assert.equal(elt.type, "warning");
+        assert.equal(elt.html, "false");
+      });
+
+      test('html is -42', function() {
+        var elt = fixture('htmlIs-42');
+
+        assert.equal(elt.type, "warning");
+        assert.equal(elt.html, "-42");
+      });
+
+      test('html is 0', function() {
+        var elt = fixture('htmlIs0');
+
+        assert.equal(elt.type, "warning");
+        assert.equal(elt.html, "0");
+      });
+
+      test('html is 42', function() {
+        var elt = fixture('htmlIs42');
+
+        assert.equal(elt.type, "warning");
+        assert.equal(elt.html, "42");
+      });
+
+      test('html is empty', function() {
+        var elt = fixture('htmlIsEmpty');
+
+        assert.equal(elt.type, "warning");
+        assert.equal(elt.html, "");
+      });
+
+      test('html is lorem ipsum', function() {
+        var elt = fixture('htmlIsLorem_ipsum');
+
+        assert.equal(elt.type, "warning");
+        assert.equal(elt.html, "lorem ipsum");
+      });
+
+      test('html is {}', function() {
+        var elt = fixture('htmlIs{}');
+
+        assert.equal(elt.type, "warning");
+        assert.equal(elt.html, "{}");
+      });
+
+      test('html is []', function() {
+        var elt = fixture('htmlIs[]');
+
+        assert.equal(elt.type, "warning");
+        assert.equal(elt.html, "[]");
+      });
+
+      test('html is function', function() {
+        var elt = fixture('htmlIsFunction');
+
+        assert.equal(elt.type, "warning");
+        assert.equal(elt.html, "function f() { return undefined; }");
+      });
+    });
+
+    suite("tests where properties are set as in code", function() {
+
+      test('invalid type values', function() {
+        var elt = fixture('initial');
+
+        var actValues = [
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+        ];
+
+        var expValues = [
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+        ];
+
+        for (var i = 0; i < actValues.length; i++) {
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+
+          elt.type = actValue;
+          assert.deepEqual(elt.type, expValue);
+          assert.equal(elt.html, "");
+        }
+      });
+
+      test('invalid html values', function() {
+        var elt = fixture('initial');
+
+        var actValues = [
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+        ];
+
+        var expValues = [
+          "undefined", "null", "true", "false", "-42", "0", "42", "", "lorem ipsum", "{}", "[]", "function f() { return undefined; }",
+          undefined, null, true, false, -42, 0, 42, {}, []
+        ];
+
+        for (var i = 0; i < actValues.length; i++) {
+          var actValue = actValues[i];
+          var expValue = expValues[i];
+
+          elt.html = actValue;
+          assert.equal(elt.type, "warning");
+          assert.deepEqual(elt.html, expValue);
+        }
+      });
+
+    });
+  </script>
+</body>
+
+</html>
