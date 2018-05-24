@@ -82,8 +82,9 @@
       Polymer.dom(this.$.msg).classList.toggle('hide', !msg);
 
       // ignore non string and empty value for type because they do not make sense
-      if (!this._isString(this.type) || !this.type.length) return;
-
+      // also ignore values that have spaces in them because they do not make sense
+      if (!this._isString(this.type) || !this.type.length || this.type.indexOf(" ") > -1) return;
+      
       var cl = this.type;
 
       if (this._cl !== undefined) {
