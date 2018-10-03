@@ -34,7 +34,17 @@
 
         var html = "<div>Lorem ipsum</div>";
         elt.html = html;
-        assert.equal(msg.innerHTML, html);
+        
+        // 
+        // Firefox detection for shadowRoot which is shadyRoot in reallity and uses style-scoping 
+        // 
+        if (elt.shadowRoot && elt.shadowRoot.Ga && elt.shadowRoot.Ga == "ShadyRoot") {
+          var shadyHtml = '<div class="style-scope at-carbon-message">Lorem ipsum</div>';
+          assert.equal(msg.innerHTML, shadyHtml);
+        
+        } else {
+          assert.equal(msg.innerHTML, html);
+        }
 
         // when html is empty hide class is present
         assert.equal(msg.classList.contains('hide'), false);
